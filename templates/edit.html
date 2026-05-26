@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Entry</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>📝 Edit Entry</h1>
+        <p>Update your diary entry and save the changes.</p>
+    </div>
+
+    <div class="card">
+
+        <form method="POST">
+
+            <div class="form-group">
+
+                <label>
+                    <strong>Title</strong>
+                </label>
+
+                <input
+                    type="text"
+                    name="title"
+                    value="{{ entry.title }}"
+                    maxlength="200"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    <strong>Diary Content</strong>
+                </label>
+
+                <textarea
+                    name="body"
+                    required>{{ entry.body }}</textarea>
+
+            </div>
+
+            <div class="actions">
+
+                <button
+                    type="submit"
+                    class="btn primary">
+                    💾 Update Entry
+                </button>
+
+                <a href="/entry/{{ entry.id }}"
+                   class="btn">
+                    ← Back
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,695 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --primary:#6d5dfc;
+    --primary-dark:#5145cd;
+    --secondary:#8f94fb;
+
+    --danger:#ff4d6d;
+    --success:#22c55e;
+
+    --bg:#f5f7ff;
+    --card:#ffffff;
+    --text:#1f2937;
+    --muted:#6b7280;
+
+    --shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    --radius:22px;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+    color:var(--text);
+    overflow-x:hidden;
+
+    background:
+    linear-gradient(
+    -45deg,
+    #eef2ff,
+    #f5f7ff,
+    #fdf2f8,
+    #ecfeff);
+
+    background-size:400% 400%;
+
+    animation:
+    gradientMove 18s ease infinite;
+}
+
+/* =========================
+   ANIMATED BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+
+    position:fixed;
+    top:-150px;
+    left:-150px;
+
+    width:350px;
+    height:350px;
+
+    border-radius:50%;
+
+    background:
+    rgba(109,93,252,.12);
+
+    filter:blur(80px);
+
+    animation:
+    floatBlob 12s infinite ease-in-out;
+
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+
+    position:fixed;
+    bottom:-150px;
+    right:-150px;
+
+    width:350px;
+    height:350px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,77,109,.10);
+
+    filter:blur(90px);
+
+    animation:
+    floatBlob2 14s infinite ease-in-out;
+
+    z-index:-1;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    width:94%;
+    max-width:900px;
+    margin:auto;
+    padding:20px 0 100px;
+}
+
+/* =========================
+   GLASS CARD
+========================= */
+
+.card{
+    background:
+    rgba(255,255,255,.72);
+
+    backdrop-filter:
+    blur(18px);
+
+    -webkit-backdrop-filter:
+    blur(18px);
+
+    border:
+    1px solid rgba(255,255,255,.3);
+
+    border-radius:
+    var(--radius);
+
+    box-shadow:
+    var(--shadow);
+
+    padding:24px;
+
+    animation:
+    cardEntrance .7s ease;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    position:sticky;
+    top:10px;
+
+    z-index:50;
+
+    margin-bottom:22px;
+
+    border-radius:26px;
+
+    padding:24px;
+
+    background:
+    linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+    color:white;
+
+    box-shadow:
+    0 15px 40px
+    rgba(109,93,252,.35);
+
+    animation:
+    slideDown .8s ease;
+}
+
+.header h1{
+    font-size:1.8rem;
+    margin-bottom:14px;
+}
+
+.header p{
+    opacity:.9;
+    font-size:.95rem;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box{
+    margin-top:16px;
+}
+
+.search-box input{
+    width:100%;
+    border:none;
+    outline:none;
+
+    padding:14px 16px;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    transition:.35s;
+}
+
+.search-box input:focus{
+    transform:scale(1.02);
+}
+
+/* =========================
+   FORM ELEMENTS
+========================= */
+
+input,
+textarea{
+    width:100%;
+
+    padding:14px;
+
+    border-radius:16px;
+
+    border:2px solid #ececec;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+input:focus,
+textarea:focus{
+    border-color:
+    var(--primary);
+
+    box-shadow:
+    0 0 0 4px
+    rgba(109,93,252,.15);
+}
+
+textarea{
+    resize:none;
+    min-height:260px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+    border:none;
+    cursor:pointer;
+
+    padding:12px 18px;
+
+    border-radius:14px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.primary{
+    background:
+    linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+    color:white;
+}
+
+.primary:hover{
+    transform:
+    translateY(-3px);
+
+    box-shadow:
+    0 10px 25px
+    rgba(109,93,252,.35);
+}
+
+.danger{
+    background:
+    linear-gradient(
+    135deg,
+    #ff4d6d,
+    #ff758f);
+
+    color:white;
+}
+
+.danger:hover{
+    animation:
+    shake .4s;
+}
+
+.full{
+    width:100%;
+}
+
+/* =========================
+   ENTRY CARD
+========================= */
+
+.entry-card{
+    position:relative;
+
+    margin-bottom:18px;
+
+    background:
+    rgba(255,255,255,.75);
+
+    backdrop-filter:
+    blur(12px);
+
+    border-radius:22px;
+
+    padding:20px;
+
+    box-shadow:
+    var(--shadow);
+
+    transition:.35s;
+
+    overflow:hidden;
+
+    animation:
+    slideUp .55s ease;
+}
+
+.entry-card::before{
+    content:"";
+
+    position:absolute;
+    top:0;
+    left:0;
+
+    width:5px;
+    height:100%;
+
+    background:
+    linear-gradient(
+    var(--primary),
+    var(--secondary));
+}
+
+.entry-card:hover{
+    transform:
+    translateY(-6px)
+    scale(1.01);
+}
+
+.entry-card h3{
+    margin-bottom:8px;
+}
+
+.date{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:15px;
+}
+
+.actions form{
+    display:inline;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty{
+    text-align:center;
+    padding:80px 20px;
+}
+
+.empty-icon{
+    font-size:90px;
+
+    animation:
+    notebookFloat
+    4s ease-in-out infinite;
+}
+
+.empty h2{
+    margin-top:15px;
+    margin-bottom:10px;
+}
+
+.empty p{
+    color:var(--muted);
+}
+
+/* =========================
+   FLOATING ACTION BUTTON
+========================= */
+
+.fab{
+    position:fixed;
+
+    right:22px;
+    bottom:22px;
+
+    width:65px;
+    height:65px;
+
+    border-radius:50%;
+
+    text-decoration:none;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:34px;
+
+    color:white;
+
+    background:
+    linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary));
+
+    box-shadow:
+    0 15px 35px
+    rgba(109,93,252,.45);
+
+    transition:.35s;
+
+    z-index:99;
+
+    animation:
+    pulseFab 3s infinite;
+}
+
+.fab:hover{
+    transform:
+    rotate(90deg)
+    scale(1.1);
+}
+
+/* =========================
+   ERROR MESSAGE
+========================= */
+
+.error{
+    background:#ffe8ec;
+    color:#d90429;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    margin-bottom:15px;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.back-link{
+    display:inline-block;
+    margin-top:15px;
+    color:var(--primary);
+    font-weight:600;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes gradientMove{
+    0%{
+        background-position:0% 50%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+@keyframes floatBlob{
+    0%,100%{
+        transform:translate(0,0);
+    }
+    50%{
+        transform:
+        translate(50px,60px);
+    }
+}
+
+@keyframes floatBlob2{
+    0%,100%{
+        transform:translate(0,0);
+    }
+    50%{
+        transform:
+        translate(-60px,-40px);
+    }
+}
+
+@keyframes slideUp{
+    from{
+        opacity:0;
+        transform:
+        translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:
+        translateY(0);
+    }
+}
+
+@keyframes slideDown{
+    from{
+        opacity:0;
+        transform:
+        translateY(-30px);
+    }
+    to{
+        opacity:1;
+        transform:
+        translateY(0);
+    }
+}
+
+@keyframes cardEntrance{
+    from{
+        opacity:0;
+        transform:
+        scale(.9);
+    }
+    to{
+        opacity:1;
+        transform:
+        scale(1);
+    }
+}
+
+@keyframes notebookFloat{
+    0%,100%{
+        transform:
+        translateY(0)
+        rotate(0deg);
+    }
+
+    25%{
+        transform:
+        translateY(-10px)
+        rotate(-3deg);
+    }
+
+    50%{
+        transform:
+        translateY(-18px)
+        rotate(3deg);
+    }
+
+    75%{
+        transform:
+        translateY(-10px)
+        rotate(-3deg);
+    }
+}
+
+@keyframes pulseFab{
+    0%,100%{
+        box-shadow:
+        0 15px 35px
+        rgba(109,93,252,.4);
+    }
+
+    50%{
+        box-shadow:
+        0 15px 45px
+        rgba(109,93,252,.8);
+    }
+}
+
+@keyframes shake{
+    20%{
+        transform:translateX(-3px);
+    }
+    40%{
+        transform:translateX(3px);
+    }
+    60%{
+        transform:translateX(-3px);
+    }
+    80%{
+        transform:translateX(3px);
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .container{
+        width:95%;
+    }
+
+    .header{
+        padding:20px;
+    }
+
+    .header h1{
+        font-size:1.5rem;
+    }
+
+    .card{
+        padding:18px;
+    }
+
+    .entry-card{
+        padding:18px;
+    }
+
+    .fab{
+        width:60px;
+        height:60px;
+        font-size:30px;
+    }
+
+    textarea{
+        min-height:220px;
+    }
+}
+
+.user-badge{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-top:15px;
+}
+
+.avatar{
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+    background:white;
+    color:#6d5dfc;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-weight:bold;
+    font-size:18px;
+
+    animation:
+    pulseAvatar 3s infinite;
+}
+
+@keyframes pulseAvatar{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.1);
+    }
+
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Diary</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>📔 My Diary</h1>
+
+        <p>
+            Welcome back. Capture memories,
+            thoughts and experiences.
+        </p>
+        <div class="user-badge">
+
+    <div class="avatar">
+        {{ current_user.username[0]|upper }}
+    </div>
+
+    <div>
+
+        <small>Logged in as</small>
+
+        <div class="username">
+            {{ current_user.username }}
+        </div>
+
+    </div>
+
+</div>
+
+        <div class="search-box">
+
+            <form action="/search" method="POST">
+
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="🔍 Search diary title..."
+                    autocomplete="off">
+
+            </form>
+
+        </div>
+
+        <div style="
+            margin-top:15px;
+            display:flex;
+            justify-content:flex-end;
+        ">
+            <a href="/logout"
+               class="btn"
+               style="
+               background:white;
+               color:#6d5dfc;
+               font-weight:bold;
+               ">
+               Logout
+            </a>
+        </div>
+
+    </div>
+
+    {% if entries %}
+
+        {% for entry in entries %}
+
+        <div class="entry-card">
+
+            <a href="/entry/{{ entry.id }}">
+
+                <h3>
+                    {{ entry.title }}
+                </h3>
+
+                <p class="date">
+                    🕒 {{ entry.date }}
+                </p>
+
+            </a>
+
+            <div class="actions">
+
+                <a href="/edit/{{ entry.id }}"
+                   class="btn primary">
+                   ✏️ Edit
+                </a>
+
+                <form
+                    action="/delete/{{ entry.id }}"
+                    method="POST"
+                    onsubmit="return confirm('Delete this entry?');">
+
+                    <button
+                        type="submit"
+                        class="btn danger">
+                        🗑 Delete
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                📔
+            </div>
+
+            <h2>
+                No Diary Entries Yet
+            </h2>
+
+            <p>
+                Start writing your first diary
+                memory by tapping the +
+                button below.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+    <a href="/new_add"
+       class="fab">
+       +
+    </a>
+
+</div>
+
+</body>
+</html>

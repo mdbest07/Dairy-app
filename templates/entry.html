@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ entry.title }}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>📖 Diary Entry</h1>
+        <p>Read and manage your saved memory.</p>
+    </div>
+
+    <div class="card">
+
+        <h1 style="margin-bottom:10px;">
+            {{ entry.title }}
+        </h1>
+
+        <p class="date" style="margin-bottom:20px;">
+            🕒 {{ entry.date }}
+        </p>
+
+        <hr style="
+            border:none;
+            height:1px;
+            background:#e5e7eb;
+            margin-bottom:20px;
+        ">
+
+        <div style="
+            white-space:pre-wrap;
+            line-height:1.9;
+            font-size:16px;
+            word-wrap:break-word;
+        ">
+            {{ entry.body }}
+        </div>
+
+        <div class="actions" style="margin-top:30px;">
+
+            <a href="/edit/{{ entry.id }}"
+               class="btn primary">
+               ✏️ Edit
+            </a>
+
+            <form action="/delete/{{ entry.id }}"
+                  method="POST"
+                  onsubmit="return confirm('Delete this diary entry?');">
+
+                <button
+                    type="submit"
+                    class="btn danger">
+                    🗑 Delete
+                </button>
+
+            </form>
+
+            <a href="/"
+               class="btn">
+               ← Back Home
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

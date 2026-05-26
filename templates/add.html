@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Diary Entry</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>✍️ New Diary Entry</h1>
+        <p>Capture your thoughts, ideas, memories and experiences.</p>
+    </div>
+
+    <div class="card">
+
+        <form method="POST">
+
+            <div class="form-group">
+                <label><strong>Title</strong></label>
+
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="Enter diary title..."
+                    maxlength="200"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label><strong>Diary Content</strong></label>
+
+                <textarea
+                    name="body"
+                    placeholder="What happened today?"
+                    required></textarea>
+            </div>
+
+            <div class="actions">
+
+                <button
+                    type="submit"
+                    class="btn primary">
+                    💾 Save Entry
+                </button>
+
+                <a href="/"
+                   class="btn">
+                    ← Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
